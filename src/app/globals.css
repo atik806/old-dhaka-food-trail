@@ -1,26 +1,99 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: #fbf5ea;
+  --color-paper-deep: #f3e8d4;
+  --color-line: #e6d6bc;
+  --color-ink: #2a1a12;
+  --color-muted: #8a7360;
+  --color-terracotta: #b4432b;
+  --color-saffron: #e59a1b;
+  --color-mughal: #2f6b4f;
+  --font-sans: var(--font-geist-sans), var(--font-bengali);
+  --font-display: var(--font-fraunces), var(--font-bengali);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-geist-sans), var(--font-bengali), system-ui, sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-saffron);
+  outline-offset: 2px;
+}
+
+/* ---- Leaflet skin ---- */
+.leaflet-container {
+  font-family: inherit;
+  background: #efe6d6;
+}
+
+/* Warm the standard OSM tiles toward the paper palette. */
+.trail-tiles {
+  filter: sepia(0.25) saturate(0.85) brightness(1.02);
+}
+
+.trail-pin {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  border: 2px solid #fff;
+  box-shadow: 0 3px 8px rgb(42 26 18 / 0.35);
+  transition: transform 150ms ease;
+}
+.trail-pin > span {
+  transform: rotate(45deg);
+  font-size: 15px;
+  line-height: 1;
+}
+.trail-pin.is-stop > span {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+}
+.trail-pin.is-selected {
+  transform: rotate(-45deg) scale(1.2);
+  box-shadow: 0 0 0 4px rgb(229 154 27 / 0.55), 0 3px 8px rgb(42 26 18 / 0.35);
+}
+
+.trail-pin-fav {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--color-terracotta);
+  font-size: 11px;
+  font-style: normal;
+  line-height: 1;
+  box-shadow: 0 1px 3px rgb(42 26 18 / 0.3);
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 14px;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  box-shadow: 0 10px 30px rgb(42 26 18 / 0.25);
+}
+.leaflet-popup-tip {
+  background: var(--color-paper);
+}
+.leaflet-popup-content {
+  margin: 14px 16px;
+  width: 260px !important;
 }
